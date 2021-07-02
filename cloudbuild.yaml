@@ -15,10 +15,10 @@ steps:
   - |
     chmod 600 /root/.ssh/id_github
     cat <<EOF >/root/.ssh/config
-    Hostname bitbucket.org
+    Hostname github.com
     IdentityFile /root/.ssh/id_github
     EOF
-    ssh-keyscan -t rsa bitbucket.org > /root/.ssh/known_hosts
+    ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
   volumes:
   - name: 'ssh'
     path: /root/.ssh
@@ -46,7 +46,11 @@ steps:
         prefix = \"$_DEPLOYMENT\"
       }
     }" > backend.tf
+
+-name: 
 - name: 'hashicorp/terraform'  
   args: ['init']
+  dir: 'deployments'
 - name: 'hashicorp/terraform'  
   args: ['plan']
+  dir: 'deployments'
