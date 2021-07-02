@@ -1,0 +1,20 @@
+working_dir = "../module/source_code"
+name_of_zip = "push.zip"
+storagebucket = "summer-test-bucket"
+storagebucket_location = "EU"
+pubsubtopic = "summerschooltopic"
+msg_prefix = "msg"
+msg_extension = "txt"
+deploy_cloud_function_push = "true"
+deploy_topic = "true"
+deploy_bucketarchive = "true"
+cloud_function_name = "summer-school-function"
+cloud_function_runtime = "go113"
+cloud_function_entry_point = "helloWorld"
+cloud_function_memory = "256"
+cloud_function_timeout = "60"
+cloud_function_region = "europe-west3"
+event_trigger_retry = "true"
+
+
+
