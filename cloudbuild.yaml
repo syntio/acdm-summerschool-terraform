@@ -2,7 +2,7 @@
 steps:
 - name: gcr.io/cloud-builders/gcloud
   entrypoint: 'bash'
-  args: [ '-c', 'gcloud secrets versions access latest --secret=summerschoolkey > /root/.ssh/id_github' ]
+  args: [ '-c', 'gcloud secrets versions access 1 --secret=summerschoolkey > /root/.ssh/id_github' ]
   volumes:
   - name: 'ssh'
     path: /root/.ssh
@@ -27,7 +27,7 @@ steps:
 - name: 'gcr.io/cloud-builders/git'
   args:
   - clone
-  - git@github.com:syntio/summerschool-terraform.git
+  - git@github.com:karlok/syntio/summerschool-terraform.git
   volumes:
   - name: 'ssh'
     path: /root/.ssh
