@@ -46,8 +46,6 @@ steps:
         prefix = \"$_DEPLOYMENT\"
       }
     }" > backend.tf
-
--name: 
 - name: 'hashicorp/terraform'  
   args: ['init']
   dir: 'deployments'
