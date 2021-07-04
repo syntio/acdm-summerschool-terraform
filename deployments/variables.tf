@@ -17,18 +17,13 @@ variable "storagebucket_location" {
     type = string
     description = "Location of Bucket"
 }
-variable "deploy_gomodvendor" {
-  description = "If true resource is created"
-  type = bool
-  default = "false"
-}
 variable "deploy_bucketarchive" {
   description = "If true resource is created"
   type = bool
   default = "false"
 }
 
-variable "deploy_cloud_function_push" {
+variable "deploy_cloud_function_pull" {
   description = "If true resource is created"
   type = bool
   default = "false"
@@ -36,6 +31,12 @@ variable "deploy_cloud_function_push" {
 
 
 variable "deploy_topic" {
+  description = "If true resource is created"
+  type = bool
+  default = "false"
+}
+
+variable "deploy_source_zip" {
   description = "If true resource is created"
   type = bool
   default = "false"
@@ -88,4 +89,34 @@ variable "msg_prefix" {
 variable "msg_extension" {
     type = string
     description = "MSG Extension"
+}
+
+variable "output_path" {
+    type = string
+    description = "Output path"
+}
+variable "source_dir" {
+    type = string
+    description = "Output path"
+}
+
+variable "max_outstanding_bytes" {
+    type = string
+    description = " Max outstanding bytes"
+}
+variable "synchronous" {
+    type = string
+    description = "synchronous"
+}
+variable "bucket_id" {
+    type = string
+    description = "Bucket_ID"
+}
+variable "project_id" {
+    type = string
+    description = "Project_ID"
+}
+variable "trigger_http" {
+    type = bool
+    description = "Trigger HTTP"
 }

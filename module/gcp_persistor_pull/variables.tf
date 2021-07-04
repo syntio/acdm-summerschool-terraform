@@ -29,39 +29,32 @@ variable "cloud_function_memory" {
     description = "Memory of Cloud Function"
 }
 
-variable "cloud_function_timeout" {
-    type = string
-    description = "Timeout of Cloud Function"
-}
 variable "cloud_function_region" {
     type = string
     description = "Region of Cloud Function"
 }
 
-variable "event_trigger_retry" {
+variable "project_id" {
     type = string
-    description = "True or False"
+    description = "Project ID"
+
+}
+variable "trigger_http" {
+    type = string
+    description = "HTTP trigger"
 }
 
-variable "msg_prefix" {
+variable "entry_point" {
     type = string
-    description = "MSG prefix"
+    description = "Entry point"
 }
-variable "msg_extension" {
+
+variable "region" {
     type = string
-    description = "MSG Extension"
+    description = "Region"
 }
+
 variable "name_of_zip" {
     type = string
-    description = "Name of ZIP file"
-}
-variable "deploy_cloud_function" {
-  description = "If true resource is created"
-  type = bool
-  default = "false"
-}
-variable "bucket_id" {
- type = string 
- description = "BUCKET ID"
-  
+    description = "Name of ZIP"
 }

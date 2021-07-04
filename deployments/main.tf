@@ -1,6 +1,7 @@
 provider google {
   project = "landscape-project-220208"
   region = "europe-west1"
+  credentials = file("credentials.json")
 }
 
   terraform {
@@ -26,25 +27,31 @@ module "bucket_archive" {
   storagebucket = var.storagebucket
   storagebucket_location = var.storagebucket_location
 }
+module "source_zip" {
+  source = "../module/source_zip"
+  count = var.deploy_source_zip ? 1 : 0
+  working_dir = var.working_dir
+  source_dir = var.source_dir
+  output_path = var.output_path
+  name_of_zip = var.name_of_zip
+  storagebucket = var.storagebucket
+  depends_on = [module.bucket_archive]
+}
 
-module "cloud_function_push" {
-  source = "../module/gcp_persistor_push"
-  count = var.deploy_cloud_function_push ? 1 : 0
+module "cloud_function_pull" {
+  source = "../module/gcp_persistor_pull"
+  count = var.deploy_cloud_function_pull ? 1 : 0
   cloud_function_name = var.cloud_function_name
   cloud_function_runtime  = var.cloud_function_runtime
   cloud_function_entry_point = var.cloud_function_entry_point
   cloud_function_memory = var.cloud_function_memory
-  cloud_function_timeout = var.cloud_function_timeout
-  name_of_zip = var.name_of_zip
   storagebucket = var.storagebucket
   cloud_function_region = var.cloud_function_region
   pubsubtopic = var.pubsubtopic
-  event_trigger_retry = var.event_trigger_retry
-  msg_extension = var.msg_extension
-  msg_prefix = var.msg_prefix
-  bucket_id = var.storagebucket
-
+  project_id = var.project_id
+  name_of_zip = var.name_of_zip
+  trigger_http = var.trigger_http
+  entry_point = var.cloud_function_entry_point
+  region = var.cloud_function_region
   depends_on = [module.bucket_archive]
 }
-
-
