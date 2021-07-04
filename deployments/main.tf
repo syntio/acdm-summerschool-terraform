@@ -1,7 +1,6 @@
 provider google {
   project = "landscape-project-220208"
   region = "europe-west1"
-  credentials = file("credentials.json")
 }
 
   terraform {
