@@ -52,5 +52,5 @@ module "cloud_function_pull" {
   trigger_http = var.trigger_http
   entry_point = var.cloud_function_entry_point
   region = var.cloud_function_region
-  depends_on = [module.bucket_archive]
+  depends_on = [module.bucket_archive,module.topic]
 }

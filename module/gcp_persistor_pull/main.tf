@@ -5,7 +5,7 @@ resource "google_cloudfunctions_function" "function" {
   source_archive_bucket = var.storagebucket
   source_archive_object = var.name_of_zip
   region                = var.cloud_function_region
-
+  entry_point = var.cloud_function_entry_point
 
   event_trigger {
   event_type = "providers/cloud.pubsub/eventTypes/topic.publish"
