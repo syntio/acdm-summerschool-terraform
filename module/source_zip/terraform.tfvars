@@ -1,6 +1,0 @@
-source_url = ".terraform/module/source_code"
-working_dir = "../source_code"
-source_dir = "../source_code"
-output_path = "source_code.zip"
-name_of_zip = "source_code.zip"
-storagebucket = "summerschoolbucket"
