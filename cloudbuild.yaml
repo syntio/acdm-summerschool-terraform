@@ -1,7 +1,10 @@
 steps:
 - id: terraform-init
   name: 'gcr.io/cloud-builders/docker'
-  args: ['run', '-v', '/workspace:/app', '-v', '/root/.ssh:/root/.ssh', '-w', '/app', 'hashicorp/terraform:0.12.0', 'init']
+  args: ['run', '-v', '/workspace:/app', '-v', '/root/.ssh:/root/.ssh', '-w', '/app', 'hashicorp/terraform:0.12.0']
+  dir: 'deployments'
+- name: 'hashicorp/terraform'  
+  args: ['init']
   dir: 'deployments'
 - name: 'hashicorp/terraform'  
   args: ['plan']
