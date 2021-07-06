@@ -1,55 +1,7 @@
-# # Access the id_github file from Secret Manager
-# steps:
-# - name: gcr.io/cloud-builders/gcloud
-#   entrypoint: 'bash'
-#   args: [ '-c', 'gcloud secrets versions access 1 --secret=summerschoolkey > /root/.ssh/id_github' ]
-#   volumes:
-#   - name: 'ssh'
-#     path: /root/.ssh
-
-# # Set up git with key and domain
-# - name: 'gcr.io/cloud-builders/git'
-#   entrypoint: 'bash'
-#   args:
-#   - '-c'
-#   - |
-#     chmod 600 /root/.ssh/id_github
-#     cat <<EOF >/root/.ssh/config
-#     Hostname github.com
-#     IdentityFile /root/.ssh/id_github
-#     EOF
-#     ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
-#   volumes:
-#   - name: 'ssh'
-#     path: /root/.ssh
-
-# # Connect to the repository
-# - name: 'gcr.io/cloud-builders/git'
-#   args:
-#   - clone
-#   - git@github.com:syntio/summerschool-terraform.git
-#   volumes:
-#   - name: 'ssh'
-#     path: /root/.ssh
 steps:
 - id: terraform-init
   name: 'gcr.io/cloud-builders/docker'
   args: ['run', '-v', '/workspace:/app', '-v', '/root/.ssh:/root/.ssh', '-w', '/app', 'hashicorp/terraform:0.12.0', 'init']
-- name: gcr.io/cloud-builders/gcloud
-  entrypoint: 'bash'
-  args:
-  - '-c'
-  - |
-    echo \
-    "terraform {
-      backend \"gcs\" {
-        bucket = \"backend-summer\"
-        prefix = \"$_DEPLOYMENT\"
-      }
-    }" > backend.tf
-- name: 'hashicorp/terraform'  
-  args: ['init']
-  dir: 'deployments'
 - name: 'hashicorp/terraform'  
   args: ['plan']
   dir: 'deployments'

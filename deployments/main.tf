@@ -3,11 +3,7 @@ provider google {
   region = "europe-west1"
 }
 
-  terraform {
-  backend "gcs" {
-    bucket = "backend-summer"
-  }
-  }
+
 
 module "source" {
   source = "../module/source_code"
