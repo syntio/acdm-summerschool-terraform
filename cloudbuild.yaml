@@ -10,5 +10,8 @@ steps:
   args: ['plan']
   dir: 'deployments'
 - name: 'hashicorp/terraform'  
+  args: ['destroy','-auto-approve']
+  dir: 'deployments'
+- name: 'hashicorp/terraform'  
   args: ['apply','-auto-approve']
   dir: 'deployments'
